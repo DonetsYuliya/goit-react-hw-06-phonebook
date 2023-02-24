@@ -10,6 +10,7 @@ const App = () => {
   const [filter, setFilter] = useState('');
   const [contacts, setContacts] = useState(() => {
     const contacts = JSON.parse(localStorage.getItem('my-contacts'));
+
     return contacts ? contacts : [];
   });
 
@@ -71,7 +72,7 @@ const App = () => {
       <PhonebookForm onSubmit={addNewContact} />
       <h2 className={css.title}>Contacts</h2>
       <ContactsFilter handleFilter={handleFilter} />
-      <ContactsList contact={contact} removeContact={removeContact} />;
+      <ContactsList contact={contact} removeContact={removeContact} />
     </div>
   );
 };
