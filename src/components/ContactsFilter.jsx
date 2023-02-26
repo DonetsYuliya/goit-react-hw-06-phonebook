@@ -1,7 +1,14 @@
 import css from './style.module.css';
-import PropTypes from 'prop-types';
+import { setFilter } from 'redux/filters/actions';
+import { useDispatch } from 'react-redux';
 
-const ContactsFilter = ({ handleFilter }) => {
+const ContactsFilter = () => {
+  const dispatch = useDispatch();
+
+  const handleFilter = ({ target }) => {
+    dispatch(setFilter(target.value));
+  };
+
   return (
     <div className={css.filterWrapper}>
       <label htmlFor="filter">Find contacts by name</label>
@@ -16,7 +23,3 @@ const ContactsFilter = ({ handleFilter }) => {
 };
 
 export default ContactsFilter;
-
-ContactsFilter.propTypes = {
-  handleFilter: PropTypes.func.isRequired,
-};

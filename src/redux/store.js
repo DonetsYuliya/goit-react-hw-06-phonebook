@@ -1,26 +1,14 @@
 import { createStore } from 'redux';
 import { devToolsEnhancer } from '@redux-devtools/extension';
+import { rootReducer } from './reducer';
 
-const initialState = {
-  contacts: [
-    {
-      id: 1,
-      name: 'Viki',
-      number: '12-12-12',
-    },
-    {
-      id: 2,
-      name: 'Didi',
-      number: '20-20-20',
-    },
-  ],
-  filter: '',
-};
-
-const rootReducer = (state = initialState, action) => {
-  return state;
+const preloadedState = () => {
+  const contacts = JSON.parse(localStorage.getItem('my-contacts'));
+  return contacts
+    ? { contacts: contacts, filter: '' }
+    : { contacts: [], filter: '' };
 };
 
 const enhancer = devToolsEnhancer();
 
-export const store = createStore(rootReducer, enhancer);
+export const store = createStore(rootReducer, preloadedState(), enhancer);
