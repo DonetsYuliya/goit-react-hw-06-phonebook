@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contactsSlice';
 import { contactsState } from 'redux/contacts/contactsSelector';
@@ -10,10 +10,6 @@ const PhonebookForm = () => {
 
   const dispatch = useDispatch();
   const contacts = useSelector(contactsState);
-
-  useEffect(() => {
-    localStorage.setItem('my-contacts', JSON.stringify(contacts));
-  }, [contacts]);
 
   const isDublicate = name => {
     const normalizedName = name.toLowerCase();
