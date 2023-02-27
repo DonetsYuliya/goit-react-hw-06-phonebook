@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/actions';
+import { addContact } from 'redux/contacts/contactsSlice';
+import { contactsState } from 'redux/contacts/contactsSelector';
 import css from './style.module.css';
 
 const PhonebookForm = () => {
@@ -8,7 +9,7 @@ const PhonebookForm = () => {
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(contactsState);
 
   useEffect(() => {
     localStorage.setItem('my-contacts', JSON.stringify(contacts));
